@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-import python_weather
 
-from ports.into.weather import SupportedCities, CurrentWeather, Temperature, TemperatureUnit
+from application.use_case.get_current_weather_for_city import GetCurrentWeatherForCity
+from ports.into.weather import SupportedCities, CurrentWeather
 
 
 router = APIRouter(
@@ -16,12 +16,4 @@ async def get():
 
 @router.get("/current/{city}", response_model=CurrentWeather)
 async def get_current_for_city(city: SupportedCities):  # a bit too simple for pydantic model
-    async with python_weather.Client(unit=python_weather.METRIC) as client:
-        # fetch a weather forecast from a city
-        weather = await client.get(city)
-
-        return CurrentWeather(
-            city=city.value,
-            temperature=Temperature(value=weather.temperature, unit=TemperatureUnit.CELSIUS),
-            conditions=weather.description
-        )
+    return await GetCurrentWeatherForCity.execute(city)
