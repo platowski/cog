@@ -1,4 +1,7 @@
-# Sample FS App Boilerplate
+# Cogram coding challenge
+
+
+
 ## Development setup
 
 Requirements:
@@ -7,7 +10,7 @@ Requirements:
 
 Requirements (dev):
 
--   Python 3.10+
+-   Python 3.12+
 -   Poetry
 -   npm
 

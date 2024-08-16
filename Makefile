@@ -11,9 +11,6 @@ clean:
 init:
 	cp src/.env.dist src/.env
 
-frontend_build:
-	cd frontend && npm install
-
 backend_build:
 	docker-compose ${DOCKER_COMPOSE_FILES} build
 
@@ -24,8 +21,6 @@ build:
 backend_up:
 	docker-compose ${DOCKER_COMPOSE_FILES} up $(ARGS)
 
-frontend_up:
-	cd frontend && npm run dev
 
 down:
 	docker-compose ${DOCKER_COMPOSE_FILES} down --volumes
@@ -39,4 +34,3 @@ run_black:
 
 it_run:
 	make backend_up ARGS="-d"
-	make frontend_up
