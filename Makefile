@@ -16,7 +16,6 @@ backend_build:
 
 build:
 	make backend_build
-	make frontend_build
 
 backend_up:
 	docker-compose ${DOCKER_COMPOSE_FILES} up $(ARGS)

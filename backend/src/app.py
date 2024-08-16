@@ -2,12 +2,15 @@ import logging
 from fastapi import FastAPI
 
 from ports.into.status_response import StatusResponse
+from adapters.into.http.weather import router as weather_router
 
 
 logger = logging.getLogger("uvicorn.error")
 
 
 app = FastAPI(title="API for Sample App")
+
+app.include_router(weather_router)
 
 
 @app.get("/")
